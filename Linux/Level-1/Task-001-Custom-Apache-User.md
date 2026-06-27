@@ -2,50 +2,125 @@
 
 ## Scenario
 
-In response to heightened security concerns, the xFusionCorp Industries security team has opted for custom Apache users for their web applications. Each user is tailored specifically for an application, enhancing security measures. Your task is to create a custom Apache user according to the outlined specifications:
+A custom Apache application user is required on App Server 2 for security isolation.
 
-a. Create a user named kareem on App server 2 within the Stratos Datacenter.
+The requested account must be:
 
-b. Assign a unique UID 1235 and designate the home directory as /var/www/kareem.
-
-Note: You can find the infrastructure details by clicking on the Details of all Users and Servers button on the top-right section of the page.
+```text
+Username: kareem
+UID: 1235
+Home directory: /var/www/kareem
+Server: App Server 2
+```
 
 ## Requirement
 
-Create a user named `kareem` with:
+Create the user `kareem` with UID `1235` and home directory `/var/www/kareem`.
 
-- UID: `1235`
-- Home directory: `/var/www/kareem`
-- Server: App Server 2
+## Initial State
 
-## Symptom
+The user `kareem` was not present on App Server 2.
 
-The required application user did not exist yet on App Server 2.
-
-## Dependency Path
+## Troubleshooting Path
 
 ```text
-App Server 2 access
-   ↓
-User kareem does not already exist or must be configured correctly
-   ↓
-UID 1235 is available or assigned to kareem
-   ↓
-Home directory is /var/www/kareem
-   ↓
-User entry exists in /etc/passwd
-   ↓
-Validation confirms correct UID and home path
-
+Confirm correct server
+↓
+Check if user kareem already exists
+↓
+Check if UID 1235 is already assigned
+↓
+Create user with required UID and home directory
+↓
+Validate final account details
 ```
-## Commands
 
+## Verification Before Fix
+
+Confirm the current server:
+
+```bash
 hostname
+```
 
+Check whether the user already exists:
+
+```bash
 id kareem
+```
 
+Check whether UID `1235` is already assigned:
+
+```bash
 getent passwd 1235
+```
 
-## Solution
+## First Finding
 
+```text
+User kareem did not exist.
+UID 1235 was available.
+```
+
+## Fix
+
+```bash
 sudo useradd -u 1235 -d /var/www/kareem -m kareem
+```
+
+## Validation
+
+Check the user ID and groups:
+
+```bash
+id kareem
+```
+
+Check the account entry:
+
+```bash
+getent passwd kareem
+```
+
+Check the home directory:
+
+```bash
+ls -ld /var/www/kareem
+```
+
+Expected result:
+
+```text
+User kareem exists with UID 1235 and home directory /var/www/kareem.
+```
+
+## Lessons Learned
+
+- User-management tasks should still be verified before making changes.
+- `id <user>` confirms whether a user exists.
+- `getent passwd <uid>` checks if a UID is already assigned.
+- `useradd -u <uid> -d <home> -m <user>` creates a user with a custom UID and home directory.
+
+## Knowledge Check
+
+### Question 1
+
+Before creating a Linux user with a custom UID, what should you verify first?
+
+A. Whether the UID is already assigned  
+B. Whether Apache is running  
+C. Whether `/tmp` is empty  
+D. Whether the server can access the internet  
+
+**Answer:** A
+
+### Question 2
+
+Which command creates user `kareem` with UID `1235` and home directory `/var/www/kareem`?
+
+A. `useradd kareem`  
+B. `useradd -u 1235 -d /var/www/kareem -m kareem`  
+C. `passwd kareem`  
+D. `mkdir /var/www/kareem`  
+
+**Answer:** B
