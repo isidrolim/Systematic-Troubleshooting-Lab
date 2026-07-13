@@ -170,7 +170,7 @@ North America Region
 ### Jump Host Server
 
 ```bash
-ssh thor@jump-host
+ssh -o StrictHostKeyChecking=no thor@jump-host
 ```
 
 Password:
@@ -184,7 +184,7 @@ mjolnir123
 ### Application Server 1
 
 ```bash
-ssh tony@stapp01
+ssh -o StrictHostKeyChecking=no tony@stapp01
 ```
 
 Password:
@@ -198,7 +198,7 @@ Ir0nM@n
 ### Application Server 2
 
 ```bash
-ssh steve@stapp02
+ssh -o StrictHostKeyChecking=no steve@stapp02
 ```
 
 Password:
@@ -212,7 +212,7 @@ Am3ric@
 ### Application Server 3
 
 ```bash
-ssh banner@stapp03
+ssh -o StrictHostKeyChecking=no banner@stapp03
 ```
 
 Password:
@@ -226,7 +226,7 @@ BigGr33n
 ### Load Balancer Server
 
 ```bash
-ssh loki@stlb01
+ssh -o StrictHostKeyChecking=no loki@stlb01
 ```
 
 Password:
@@ -240,7 +240,7 @@ Mischi3f
 ### Database Server
 
 ```bash
-ssh peter@stdb01
+ssh -o StrictHostKeyChecking=no peter@stdb01
 ```
 
 Password:
@@ -254,7 +254,7 @@ Sp!dy
 ### Storage Server
 
 ```bash
-ssh natasha@ststor01
+ssh -o StrictHostKeyChecking=no natasha@ststor01
 ```
 
 Password:
@@ -268,7 +268,7 @@ Bl@kW
 ### Backup Server
 
 ```bash
-ssh clint@stbkp01
+ssh -o StrictHostKeyChecking=no clint@stbkp01
 ```
 
 Password:
@@ -282,7 +282,7 @@ H@wk3y3
 ### Mail Server
 
 ```bash
-ssh groot@stmail01
+ssh -o StrictHostKeyChecking=no groot@stmail01
 ```
 
 Password:
@@ -296,7 +296,7 @@ Gr00T123
 ### Jenkins Server
 
 ```bash
-ssh jenkins@jenkins
+ssh -o StrictHostKeyChecking=no jenkins@jenkins
 ```
 
 Password:
